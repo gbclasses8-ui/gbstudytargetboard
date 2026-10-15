@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Target Board Free Courses - Official Learning Portal</title>
+  <meta name="description" content="Learn Anytime, Anywhere with Free Courses, Videos, Notes and PDFs on Target Board. Complete syllabus coverage for Matric, Inter Science & Arts.">
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Fullscreen 2.5s Splash Screen (Shown on every refresh) -->
+  <div id="splash-screen">
+    <div></div>
+    <div style="display:flex; flex-direction:column; align-items:center; text-align:center;">
+      <div class="splash-logo-wrap">
+        <img src="https://i.postimg.cc/g0Qw2MvP/loo.png" alt="Target Board Logo" onerror="this.src='logo.png'">
+      </div>
+      <h1 class="font-heading" style="font-size: 32px; font-weight:900; margin-bottom: 6px;">
+        Target <span class="text-gradient">Board</span>
+      </h1>
+      <p style="font-size: 13px; font-weight:700; color: #06B6D4; letter-spacing: 2px; text-transform: uppercase;">
+        Free Courses & Notes
+      </p>
+      
+      <div class="progress-track">
+        <div id="splash-progress-fill" class="progress-fill"></div>
+      </div>
+      <div style="display: flex; justify-content:space-between; width:260px; margin-top:10px; font-size:12px; font-family: monospace; color:#94a3b8;">
+        <span id="splash-loading-text">Loading Target Board...</span>
+        <span id="splash-pct-text">0%</span>
+      </div>
+    </div>
+
+    <!-- Splash Footer: MADE BY STUDYAPKMOD with Sunflowers and 7-Colors Animated Text -->
+    <div class="studyapkmod-footer">
+      <span style="font-size: 20px;">🌻</span>
+      <span class="animate-rainbow-7">MADE BY STUDYAPKMOD</span>
+      <span style="font-size: 20px;">🌻</span>
+    </div>
+  </div>
+
+  <!-- Course Detail Dedicated Splash Loader (Shown while opening a course, NO FOOTER) -->
+  <div id="course-splash-loader" class="modal-overlay hidden" style="z-index: 9998; background: #09090b; flex-direction: column; justify-content: space-between; padding: 40px 20px;">
+    <div></div>
+    <div style="display:flex; flex-direction:column; align-items:center; text-align:center;">
+      <div class="splash-logo-wrap" style="width: 110px; height: 110px;">
+        <img src="https://i.postimg.cc/g0Qw2MvP/loo.png" alt="Target Board Logo" onerror="this.src='logo.png'">
+      </div>
+      <h2 id="course-splash-title" class="font-heading" style="font-size: 24px; font-weight:800; color: white;">
+        Target Board Course
+      </h2>
+      <p style="font-size: 13px; color: #06B6D4; margin-top: 6px; font-family: monospace;">
+        Opening syllabus, lectures & notes...
+      </p>
+      <div class="progress-track" style="width: 250px; height: 8px; margin-top: 20px;">
+        <div id="course-splash-progress-fill" class="progress-fill" style="width: 0%;"></div>
+      </div>
+      <div style="display: flex; justify-content:space-between; width:250px; margin-top:8px; font-size:11px; font-family: monospace; color:#94a3b8;">
+        <span id="course-splash-status">Loading Course Content...</span>
+        <span id="course-splash-pct">0%</span>
+      </div>
+    </div>
+    <div class="studyapkmod-footer">
+      <span style="font-size: 18px;">🌻</span>
+      <span class="animate-rainbow-7">MADE BY STUDYAPKMOD</span>
+      <span style="font-size: 18px;">🌻</span>
+    </div>
+  </div>
+
+  <!-- Sticky Header -->
+  <header class="glass-nav">
+    <div class="container header-inner">
+      <a href="#" class="brand-link" onclick="window.showHomeView(); return false;">
+        <div class="brand-logo">
+          <img src="https://i.postimg.cc/g0Qw2MvP/loo.png" alt="Logo" onerror="this.src='logo.png'">
+        </div>
+        <div>
+          <div style="font-weight: 900; font-size: 17px; line-height: 1;">
+            TARGET <span class="text-gradient">BOARD</span>
+            <span style="font-size: 10px; background: rgba(34,197,94,0.2); color: #4ade80; border: 1px solid rgba(34,197,94,0.3); padding: 2px 6px; border-radius: 6px; font-weight: 800; margin-left: 4px;">FREE</span>
+          </div>
+          <span style="font-size: 10px; color: #94a3b8; display: block; margin-top: 2px;">Official InfinityFree Edition</span>
+        </div>
+      </a>
+
+      <!-- Instant Search Bar -->
+      <div class="search-input-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="global-search" placeholder="Search 29+ batches, class 10th, 12th science..." oninput="window.handleSearch(this.value)">
+      </div>
+
+      <!-- Actions -->
+      <div class="nav-actions">
+        <button class="icon-btn" id="theme-toggle-btn" title="Toggle Dark/Light Mode" onclick="window.toggleTheme()">
+          🌙
+        </button>
+        <button class="icon-btn" title="Saved Courses" onclick="window.showSavedView()">
+          ❤️ <span id="saved-badge" style="position: absolute; top:-2px; right:-2px; background: #ef4444; color: white; font-size: 9px; font-weight: bold; width: 16px; height: 16px; border-radius: 50%; display: none; align-items:center; justify-content:center;">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main View Area -->
+  <main style="flex: 1; padding: 24px 0 80px 0;">
+    <div class="container">
+
+      <!-- VIEW 1: HOME CATALOG -->
+      <div id="home-view">
+        <!-- Hero Banner -->
+        <section style="text-align: center; padding: 20px 0 35px 0;">
+          <div style="display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px; border-radius: 9999px; background: rgba(37,99,235,0.15); border: 1px solid rgba(37,99,235,0.3); color: #93c5fd; font-size: 12px; font-weight: 600; margin-bottom: 16px;">
+            ✨ Target Board Official Learning Cloud
+          </div>
+          <h1 class="font-heading" style="font-size: clamp(28px, 5vw, 48px); font-weight: 900; line-height: 1.15; margin-bottom: 12px;">
+            Target Board <span class="text-gradient">Free Courses</span>
+          </h1>
+          <p style="color: var(--text-muted); font-size: 15px; max-width: 650px; margin: 0 auto;">
+            Learn Anytime, Anywhere with Free Courses, Videos, Notes and PDFs. Full syllabus lectures for 10th Matric, 11th & 12th Board Exams.
+          </p>
+
+          <!-- Quick Stats -->
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; max-width: 750px; margin: 24px auto 0 auto;">
+            <div style="background: rgba(255,255,255,0.04); border: 1px solid var(--border-glass); border-radius: 16px; padding: 14px;">
+              <div style="font-weight: 900; font-size: 22px; color: #60a5fa;" id="stat-total-courses">29+</div>
+              <div style="font-size: 11px; color: var(--text-muted);">Free Batches</div>
+            </div>
+            <div style="background: rgba(255,255,255,0.04); border: 1px solid var(--border-glass); border-radius: 16px; padding: 14px;">
+              <div style="font-weight: 900; font-size: 22px; color: #22d3ee;">12,000+</div>
+              <div style="font-size: 11px; color: var(--text-muted);">Recorded Videos</div>
+            </div>
+            <div style="background: rgba(255,255,255,0.04); border: 1px solid var(--border-glass); border-radius: 16px; padding: 14px;">
+              <div style="font-weight: 900; font-size: 22px; color: #4ade80;">10,000+</div>
+              <div style="font-size: 11px; color: var(--text-muted);">Panel Notes</div>
+            </div>
+            <div style="background: rgba(255,255,255,0.04); border: 1px solid var(--border-glass); border-radius: 16px; padding: 14px;">
+              <div style="font-weight: 900; font-size: 22px; color: #fbbf24;">100%</div>
+              <div style="font-size: 11px; color: var(--text-muted);">Free Forever</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Continue Learning (Auto Resume) -->
+        <div id="continue-learning-section" style="display: none; margin-bottom: 30px;">
+          <h3 class="font-heading" style="font-size: 18px; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+            ⏱️ Continue Learning
+          </h3>
+          <div id="continue-learning-list" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px;"></div>
+        </div>
+
+        <!-- Categories Filter -->
+        <div class="category-pills" id="category-pills">
+          <button class="cat-pill active" onclick="window.filterCategory('all', this)">All Batches</button>
+          <button class="cat-pill" onclick="window.filterCategory('12th', this)">Class 12th</button>
+          <button class="cat-pill" onclick="window.filterCategory('10th', this)">Class 10th</button>
+          <button class="cat-pill" onclick="window.filterCategory('11th', this)">Class 11th</button>
+          <button class="cat-pill" onclick="window.filterCategory('polytechnic', this)">Polytechnic</button>
+        </div>
+
+        <!-- Courses Grid -->
+        <div id="courses-container" class="courses-grid">
+          <!-- Rendered dynamically by app.js -->
+        </div>
+      </div>
+
+      <!-- VIEW 2: COURSE DETAILS & FOLDERS -->
+      <div id="course-detail-view" style="display: none;">
+        <button onclick="window.showHomeView()" style="display: inline-flex; align-items: center; gap: 8px; color: #60a5fa; font-weight: 600; font-size: 13px; margin-bottom: 16px;">
+          ← Back to All Batches
+        </button>
+
+        <!-- Banner with Official Poster from tb.json -->
+        <div id="course-banner-card" class="glass-card" style="padding: 24px; margin-bottom: 24px;"></div>
+
+        <!-- Course Curriculum Header -->
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 16px; flex-wrap: wrap; gap: 10px;">
+          <h2 class="font-heading" style="font-size: 20px; font-weight: 800;">
+            📂 Course Curriculum & Content
+          </h2>
+          <span style="font-size: 12px; color: var(--text-muted);">
+            Click folders to open subfolders, Videos Tab & PDF Notes Tab
+          </span>
+        </div>
+
+        <!-- Folder Tree Container -->
+        <div id="course-folder-tree"></div>
+      </div>
+
+      <!-- VIEW 3: SAVED COURSES -->
+      <div id="saved-view" style="display: none;">
+        <button onclick="window.showHomeView()" style="display: inline-flex; align-items: center; gap: 8px; color: #60a5fa; font-weight: 600; font-size: 13px; margin-bottom: 16px;">
+          ← Back to All Batches
+        </button>
+        <h2 class="font-heading" style="font-size: 24px; font-weight: 800; margin-bottom: 16px; display: flex; align-items: center; gap: 10px;">
+          ❤️ My Saved Courses
+        </h2>
+        <div id="saved-courses-container" class="courses-grid"></div>
+      </div>
+
+    </div>
+  </main>
+
+
+  <!-- PDF Viewer Modal -->
+  <div id="pdf-modal" class="modal-overlay hidden">
+    <div class="modal-window">
+      <div style="padding: 14px 20px; background: rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border-glass);">
+        <div>
+          <span style="font-size: 11px; color: #22d3ee; font-weight: 700;">OFFICIAL FACULTY PANEL NOTES</span>
+          <h3 id="pdf-modal-title" style="font-size: 15px; font-weight: 700; color: white;"></h3>
+        </div>
+        <div style="display: flex; gap: 8px;">
+          <button onclick="window.printPdf()" style="padding: 6px 12px; border-radius: 8px; background: #2563EB; color: white; font-size: 12px; font-weight: 600;">🖨️ Print / Download</button>
+          <button onclick="window.closePdfModal()" style="font-size: 20px; color: white; padding: 4px 8px;">✕</button>
+        </div>
+      </div>
+
+      <div id="pdf-content-area" style="padding: 30px; overflow-y: auto; background: #18181b; color: white; line-height: 1.8;">
+        <div style="max-width: 650px; margin: 0 auto; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 24px;">
+          <div style="border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 12px; margin-bottom: 16px; display:flex; justify-content:space-between; align-items:center;">
+            <h4 id="pdf-doc-title" style="font-weight: 800; font-size: 17px; color: #60a5fa;"></h4>
+            <span style="font-size: 11px; background: rgba(34,197,94,0.2); color: #4ade80; padding: 2px 8px; border-radius: 6px;">Verified Notes</span>
+          </div>
+          <p style="font-size: 13px; color: #cbd5e1;">
+            📌 <strong>बिहार बोर्ड परीक्षा विशेष डिजिटल नोट्स</strong><br>
+            यह नोट्स टारगेट बोर्ड के अनुभवी शिक्षकों द्वारा नवीनतम पाठ्यक्रम और परीक्षा पैटर्न के आधार पर तैयार किए गए हैं।
+          </p>
+          <ul style="margin: 16px 0 16px 20px; font-size: 13px; color: #94a3b8;">
+            <li>सभी महत्वपूर्ण सूत्र (Formulas) और परिभाषाएं।</li>
+            <li>विगत वर्षों के प्रश्नोत्तर (PYQs)।</li>
+            <li>स्पष्ट रेखाचित्र एवं आरेख (Diagrams)।</li>
+          </ul>
+          <div style="text-align: center; margin-top: 24px;">
+            <button onclick="window.printPdf()" style="background: linear-gradient(135deg, #06B6D4, #2563EB); color: white; font-weight: 700; padding: 10px 24px; border-radius: 12px; font-size: 13px;">
+              📥 Save PDF / Print Notes
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Desktop Site Footer (Hidden when course loader is active) -->
+  <footer id="site-footer" class="glass-nav" style="border-top: 1px solid var(--border-glass); border-bottom: none; margin-top: 40px; padding: 24px 0;">
+    <div class="container" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; text-align: center;">
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <img src="https://i.postimg.cc/g0Qw2MvP/loo.png" style="width: 26px; height: 26px; border-radius: 6px;" alt="Logo" onerror="this.src='logo.png'">
+        <span style="font-weight: 800; font-size: 14px;">TARGET BOARD FREE COURSES</span>
+      </div>
+      <p style="font-size: 12px; color: var(--text-muted); max-width: 600px;">
+        Empowering board exam students with 100% free video lectures, comprehensive chapter panel notes, and syllabus walkthroughs.
+      </p>
+      
+      <!-- 7-Color Animated Footer Banner with Sunflowers -->
+      <div class="studyapkmod-footer" style="margin-top: 8px;">
+        <span style="font-size: 18px;">🌻</span>
+        <span class="animate-rainbow-7" style="font-size: 13px;">MADE BY STUDYAPKMOD</span>
+        <span style="font-size: 18px;">🌻</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Mobile Bottom Navigation -->
+  <nav class="mobile-bottom-nav">
+    <a href="#" class="mob-nav-item active" onclick="window.showHomeView(); return false;">
+      <span>🏠</span>
+      <span>Home</span>
+    </a>
+    <a href="#" class="mob-nav-item" onclick="window.showSavedView(); return false;">
+      <span>❤️</span>
+      <span>Saved</span>
+    </a>
+    <a href="#" class="mob-nav-item" onclick="window.toggleTheme(); return false;">
+      <span>🌓</span>
+      <span>Theme</span>
+    </a>
+  </nav>
+
+  <script src="app.js"></script>
+</body>
+</html>

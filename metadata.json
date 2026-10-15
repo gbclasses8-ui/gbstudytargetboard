@@ -1,0 +1,6 @@
+{
+  "name": "GB STUDY - Free Batches, Lectures & Notes",
+  "description": "GB STUDY Official Learning Platform. 100% free access to all 29+ batches, matric and inter science & arts video lectures, chapter panel notes, and PDFs.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
